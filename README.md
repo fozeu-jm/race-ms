@@ -28,7 +28,12 @@ After that do a clean install with maven using :
 ```bash
   mvn clean install
 ```
-Then run the project.
+Then run the project. 
+The api swagger documentation is available at 
+
+```bash
+  http://localhost:8090/swagger-ui/index.html
+```
 
     
 ## Architecture
