@@ -1,5 +1,6 @@
 package fr.pmu.gateways.sql;
 
+import fr.pmu.annotation.Produce;
 import fr.pmu.boundaries.output.RaceDsGateway;
 import fr.pmu.domain.entity.Race;
 import fr.pmu.domain.entity.RaceImpl;
@@ -22,14 +23,9 @@ import java.util.UUID;
 @Service
 public class RaceSqlGateway implements RaceDsGateway {
     private final RaceRepository raceRepository;
-    private final EventBusGateway eventBus;
-
-    @Value("${kafka.topic}")
-    private String kafkaTopic;
 
     public RaceSqlGateway(RaceRepository raceRepository, EventBusGateway eventBus) {
         this.raceRepository = raceRepository;
-        this.eventBus = eventBus;
     }
 
     @Override
@@ -55,11 +51,11 @@ public class RaceSqlGateway implements RaceDsGateway {
     }
 
     @Override
+    @Produce
     public void save(Race race) {
         RaceJpaMapper raceJpaMapper = new RaceJpaMapper();
         entityToJpaMapper(race, raceJpaMapper);
         raceRepository.save(raceJpaMapper);
-        eventBus.sendCreateRaceMessage(race, kafkaTopic);
     }
 
     @Override
