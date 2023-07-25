@@ -11,8 +11,6 @@ import fr.pmu.gateways.event.EventBusGateway;
 import fr.pmu.gateways.mapper.RaceJpaMapper;
 import fr.pmu.gateways.mapper.StarterJpaMapper;
 import fr.pmu.repositories.RaceRepository;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-@Service
 public class RaceSqlGateway implements RaceDsGateway {
     private final RaceRepository raceRepository;
 

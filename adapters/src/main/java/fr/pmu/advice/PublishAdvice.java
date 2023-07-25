@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class PublishAdvice {
-
     @Value("${kafka.topic}")
     private String kafkaTopic;
 
@@ -30,5 +29,4 @@ public class PublishAdvice {
         Race race = (Race) joinPoint.getArgs()[0];
         eventBus.sendCreateRaceMessage(race, kafkaTopic);
     }
-
 }
